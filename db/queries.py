@@ -1,4 +1,3 @@
-
 CREATE_TABLE_registered = """
     CREATE TABLE IF NOT EXISTS registered (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -14,8 +13,6 @@ INSERT_registered_query = """
     INSERT INTO registered (fullname, age, email, city, photo)
     VALUES (?, ?, ?, ?, ?)
 """
-
-
 
 CREATE_TABLE_store = """
     CREATE TABLE IF NOT EXISTS store (
@@ -33,7 +30,6 @@ INSERT_store_query = """
     VALUES (?, ?, ?, ?, ?)
 """
 
-
 CREATE_TABLE_store_detail = """
     CREATE TABLE IF NOT EXISTS store_detail (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -48,13 +44,15 @@ INSERT_store_detail_query = """
     VALUES (?, ?, ?)
 """
 
-
 CREATE_TABLE_collections = """
-     CREATE TABLE IF NOT EXISTS collections (
-     id INTEGER PRIMARY KEY AUTOINCREMENT,
-     collection TEXT,
-     productid TEXT,)"""
+    CREATE TABLE IF NOT EXISTS collections (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    collection TEXT,
+    productid TEXT
+    )
+"""
 
 INSERT_collection_query = """
     INSERT INTO collections (collection, productid)
-    VALUES (?, ?)"""
+    VALUES (?, ?)
+"""
