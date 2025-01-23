@@ -11,8 +11,10 @@ async def on_startup(_):
 
     await main_db.create_db()
 
+commands.register_handlers(dp)
 quizi.register_handlers(dp)
 webapp.register_handlers(dp)
+
 FSM_registration.register_handlers_fsm_reg(dp)
 FSM_store.register_handlers_fsm_store(dp)
 
