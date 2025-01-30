@@ -1,3 +1,4 @@
+# Существующие таблицы
 CREATE_TABLE_registered = """
     CREATE TABLE IF NOT EXISTS registered (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -21,13 +22,15 @@ CREATE_TABLE_store = """
     size TEXT,
     price TEXT,
     photo TEXT,
-    product_id TEXT
+    product_id TEXT,
+    collection_id INTEGER,
+    FOREIGN KEY (collection_id) REFERENCES collection(id)
     )
 """
 
 INSERT_store_query = """
-    INSERT INTO store (name_product, size, price, photo, product_id)
-    VALUES (?, ?, ?, ?, ?)
+    INSERT INTO store (name_product, size, price, photo, product_id, collection_id)
+    VALUES (?, ?, ?, ?, ?, ?)
 """
 
 CREATE_TABLE_store_detail = """
@@ -44,15 +47,36 @@ INSERT_store_detail_query = """
     VALUES (?, ?, ?)
 """
 
-CREATE_TABLE_collections = """
-    CREATE TABLE IF NOT EXISTS collections (
+# Обновленная таблица collection
+CREATE_TABLE_collection = """
+    CREATE TABLE IF NOT EXISTS collection (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    collection TEXT,
-    productid TEXT
+    collection_name TEXT NOT NULL,
+    collection_description TEXT,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
     )
 """
 
 INSERT_collection_query = """
-    INSERT INTO collections (collection, productid)
+    INSERT INTO collection (collection_name, collection_description)
     VALUES (?, ?)
+"""
+
+# Дополнительные запросы для работы с collection
+GET_ALL_COLLECTIONS = """
+    SELECT * FROM collection
+"""
+
+GET_COLLECTION_BY_ID = """
+    SELECT * FROM collection WHERE id = ?
+"""
+
+UPDATE_COLLECTION = """
+    UPDATE collection 
+    SET collection_name = ?, collection_description = ?
+    WHERE id = ?
+"""
+
+DELETE_COLLECTION = """
+    DELETE FROM collection WHERE id = ?
 """
