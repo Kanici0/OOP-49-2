@@ -2,7 +2,7 @@ from aiogram import executor
 import logging
 from config import bot, Admins, dp
 from handlers import (commands, echo, quizi, FSM_registration, store_fsm,
-                      FSM_store,delete_products, edit_products,)
+                      send_products,delete_products, edit_products,)
 from buttons import start
 from db import main_db
 
@@ -19,7 +19,7 @@ quizi.register_handlers(dp)
 FSM_registration.register_handlers_fsm_reg(dp)
 store_fsm.register_handlers_store(dp)
 
-FSM_store.register_handlers(dp)
+send_products.register_handlers(dp)
 delete_products.register_handlers(dp)
 edit_products.register_handlers(dp)
 
@@ -30,3 +30,4 @@ echo.register_handlers(dp)
 if __name__ == '__main__':
     logging.basicConfig(level=logging.INFO)
     executor.start_polling(dp, skip_updates=True, on_startup=on_startup)
+
